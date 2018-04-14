@@ -1,0 +1,31 @@
+{
+  "name": "dovlet-rpi-sensors",
+  "version": "1.0.0",
+  "description": "Library for getting data from RPi sensors",
+  "main": "./distribution/getdata.js",
+  "scripts": {
+    "build": "babel source --presets babel-preset-es2015 --out-dir distribution",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DovletAmanov/dovlet-rpi-sensors.git"
+  },
+  "keywords": [
+    "RPi"
+  ],
+  "author": "Dovlet Amanov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DovletAmanov/dovlet-rpi-sensors/issues"
+  },
+  "homepage": "https://github.com/DovletAmanov/dovlet-rpi-sensors#readme",
+  "dependencies": {
+    "o-mapper": "^0.1.3",
+    "rpi-gpio": "^0.9.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
