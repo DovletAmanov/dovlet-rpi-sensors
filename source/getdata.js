@@ -64,7 +64,7 @@ class Sensor extends EventEmitter{
             }
         
             gpio.setMode(gpio.MODE_BCM);
-            gpio.setup(this.pinNumber, gpio.DIR_IN, startSensorDetection);
+            gpio.setup(this.pinNumber, gpio.DIR_IN, startSensorDetection());
         };
 
 
