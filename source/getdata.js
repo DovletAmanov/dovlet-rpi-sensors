@@ -17,19 +17,20 @@ const OPTIONS_SCHEMA = {
 //Sensor Class
 class Sensor extends EventEmitter{
     
-    constructor(options){
-        super(options);
-        options = omapper(options, OPTIONS_SCHEMA);
+    constructor(options,pinNumber,loopInterval,detection,lastDetectionTime,interval){
+
+        super();
+        this.options = omapper(options, OPTIONS_SCHEMA);
         this.pinNumber = options.pinNumber;
         this.loopInterval = options.loopInterval;
         this.detection = false;
         this.lastDetectionTime = undefined;
         this.interval = undefined;
        
-
+        
         
         //Sensor:Read Sensor through GPIO
-        const readSensor = () => {
+         this.readSensor = () => {
             gpio.read(this.pinNumber, (err,val) => {
         
                 if( val === this.detection ){
@@ -47,29 +48,24 @@ class Sensor extends EventEmitter{
         };
 
 
+        //Sensor: Callback function for Start Detection
+        this.startSensorDetection = () => {
+           
+            this.interval = setInterval(this.readSensor, this.loopInterval);
+    
+            return this.interval
+
+        }
+
         //Sensor: Start Detection
-        const startDetection = callback => {
-            startSensorDetection = err => {
-                console.log(err) 
-                ? 
-                err 
-                : 
-                this.interval = setInterval(this.readSensor, this.loopInterval);
-        
-                if( callback ){
-                     callback(err)
-                }
-        
-                return this.interval
-            }
-        
+         this.startDetection = callback => {
             gpio.setMode(gpio.MODE_BCM);
-            gpio.setup(this.pinNumber, gpio.DIR_IN, startSensorDetection());
+            gpio.setup(this.pinNumber, gpio.DIR_IN, this.startSensorDetection);
         };
 
 
         //Sensor: Stop Detection
-        const stopDetection = () => {
+         this.stopDetection = () => {
             if( !this.interval ){
                 return false;
             }
@@ -78,8 +74,8 @@ class Sensor extends EventEmitter{
             this.interval = undefined;
         
             return true;
-        };      
-    }
+        };  
+    }    
 }
 
 module.exports = Sensor;
