@@ -1,6 +1,6 @@
 {
   "name": "dovlet-rpi-sensors",
-  "version": "1.0.5",
+  "version": "0.1.0",
   "description": "Library for getting data from RPi sensors",
   "main": "./distribution/getdata.js",
   "scripts": {

@@ -58,7 +58,7 @@ class Sensor extends EventEmitter{
         }
 
         //Sensor: Start Detection
-         this.startDetection = callback => {
+         this.startDetection = () => {
             gpio.setMode(gpio.MODE_BCM);
             gpio.setup(this.pinNumber, gpio.DIR_IN, this.startSensorDetection);
         };
@@ -74,7 +74,33 @@ class Sensor extends EventEmitter{
             this.interval = undefined;
         
             return true;
-        };  
+        };
+        
+        //Sensor: Set HIGH => GPIO
+        this.setHighPin = () => {
+            gpio.setMode(gpio.MODE_BCM);
+            gpio.setup(this.pinNumber, gpio.DIR_HIGH, this.setHighGpio);
+        }
+
+        //Sensor: Callback function for setHighPin
+        this.setHighGpio = () => {
+            gpio.write(this.pinNumber, true, err => {
+                if( err ) throw err;
+            });
+        }
+
+        //Sensor: Set LOW => GPIO
+        this.setLowPin = () => {
+            gpio.setMode(gpio.MODE_BCM);
+            gpio.setup(this.pinNumber, gpio.DIR_LOW, this.setLowGpio);
+        }
+
+        //Sensor: Callback function for setLowPin
+        this.setLowGpio = () => {
+            gpio.write(this.pinNumber, true, err => {
+                if( err ) throw err;
+            });
+        }
     }    
 }
 
