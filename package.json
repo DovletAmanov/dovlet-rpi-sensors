@@ -1,6 +1,6 @@
 {
   "name": "dovlet-rpi-sensors",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Library for getting data from RPi sensors",
   "main": "./distribution/getdata.js",
   "scripts": {
@@ -12,7 +12,15 @@
     "url": "git+https://github.com/DovletAmanov/dovlet-rpi-sensors.git"
   },
   "keywords": [
-    "RPi"
+    "RPi",
+    "Raspberrypi",
+    "Sensor",
+    "IoT",
+    "Motion sensor",
+    "Light sensor",
+    "MQ2 smoke sensor",
+    "Sound sensor",
+    "Raindrop sensor"
   ],
   "author": "Dovlet Amanov",
   "license": "MIT",
