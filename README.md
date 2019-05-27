@@ -18,6 +18,7 @@ A small library providing utility methods to `check status` of `Raspberry Pi` se
 const Sensor = require('dovlet-rpi-sensors');
 
 //You can create multiple instances of Sensor object.Example:Light Sensor
+
 const lightSensor = new Sensor({
 
     //Data-output pin number of sensor (mode.BCM)
@@ -26,13 +27,18 @@ const lightSensor = new Sensor({
     //Interval for checking sensor status.Default: 1 second
     loopInterval: 1000
 });
+
+
  
 // Listens for change on specified pinNumber 
+
 lightSensor.on('detection', () => {
     console.log("Light Detected"); 
 });
 
+
 // Starts the detection 
+
 lightSensor.startDetection();
 
 //...
